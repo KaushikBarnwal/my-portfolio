@@ -185,6 +185,18 @@ navLinks.forEach((link) => {
     });
 });
 
+// Close mobile menu when clicking outside
+document.addEventListener("click", (e) => {
+    if (
+        window.innerWidth <= 768 &&
+        navMenu.style.display === "flex" &&
+        !navMenu.contains(e.target) &&
+        !mobileMenuToggle.contains(e.target)
+    ) {
+        navMenu.style.display = "none";
+    }
+});
+
 // Handle window resize
 window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
