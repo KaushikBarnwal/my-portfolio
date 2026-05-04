@@ -3,14 +3,6 @@ const themeToggle = document.getElementById("theme-toggle");
 const body = document.body;
 const themeIcon = themeToggle.querySelector("i");
 
-// Check for saved theme preference
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "light") {
-    body.classList.remove("dark-theme");
-} else {
-    body.classList.add("dark-theme");
-    if (!savedTheme) localStorage.setItem("theme", "dark");
-}
 updateThemeIcon();
 
 themeToggle.addEventListener("click", () => {
@@ -107,7 +99,6 @@ const swiper = new Swiper(".mySwiper", {
     },
 });
 
-// Initialize ScrollReveal
 ScrollReveal({
     reset: false,
     distance: "60px",
@@ -144,26 +135,26 @@ document
         }).then(response => {
             if (response.ok) {
                 submitBtn.innerHTML = '<i class="bx bx-check"></i> Message Sent!';
-                submitBtn.style.background = "#10b981";
+                submitBtn.classList.add("btn-success");
                 setTimeout(() => {
                     submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = "";
+                    submitBtn.classList.remove("btn-success");
                     form.reset();
                 }, 3000);
             } else {
                 submitBtn.innerHTML = '<i class="bx bx-x"></i> Error!';
-                submitBtn.style.background = "#ef4444";
+                submitBtn.classList.add("btn-error");
                 setTimeout(() => {
                     submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = "";
+                    submitBtn.classList.remove("btn-error");
                 }, 3000);
             }
         }).catch(error => {
             submitBtn.innerHTML = '<i class="bx bx-x"></i> Error!';
-            submitBtn.style.background = "#ef4444";
+            submitBtn.classList.add("btn-error");
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
-                submitBtn.style.background = "";
+                submitBtn.classList.remove("btn-error");
             }, 3000);
         });
     });
@@ -197,9 +188,14 @@ document.addEventListener("click", (e) => {
     }
 });
 
-// Handle window resize
 window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
         navMenu.style.display = "";
     }
 });
+
+// Set current year in footer
+const yearElement = document.getElementById("current-year");
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}

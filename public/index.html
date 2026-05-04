@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaushik Raj - Portfolio</title>
+    <meta name="description" content="Kaushik Raj's Portfolio - Web Developer & UI/UX Designer">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -16,6 +17,15 @@
 </head>
 
 <body class="dark-theme">
+    <script>
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme === "light") {
+            document.body.classList.remove("dark-theme");
+        } else {
+            document.body.classList.add("dark-theme");
+            if (!storedTheme) localStorage.setItem("theme", "dark");
+        }
+    </script>
     <!-- Ambient Background -->
     <div class="ambient-bg">
         <div class="ambient-blob blob-1"></div>
@@ -40,10 +50,10 @@
                     target="_blank" class="btn btn-primary btn-glow" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
                     <i class='bx bxs-user-detail'></i> Resume
                 </a>
-                <button class="theme-toggle" id="theme-toggle">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
                     <i class='bx bx-moon'></i>
                 </button>
-                <button class="mobile-menu-toggle">
+                <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
                     <i class='bx bx-menu'></i>
                 </button>
             </div>
@@ -74,16 +84,16 @@
                 </div>
 
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/kaushikraj515/" target="_blank" class="social-link">
+                    <a href="https://www.linkedin.com/in/kaushikraj515/" target="_blank" class="social-link" aria-label="LinkedIn">
                         <i class='bx bxl-linkedin'></i>
                     </a>
-                    <a href="https://github.com/KaushikBarnwal" target="_blank" class="social-link">
+                    <a href="https://github.com/KaushikBarnwal" target="_blank" class="social-link" aria-label="GitHub">
                         <i class='bx bxl-github'></i>
                     </a>
-                    <a href="http://instagram.com/kaushikbarnwal.515" target="_blank" class="social-link">
+                    <a href="http://instagram.com/kaushikbarnwal.515" target="_blank" class="social-link" aria-label="Instagram">
                         <i class='bx bxl-instagram'></i>
                     </a>
-                    <a href="https://wa.link/vadqg1" target="_blank" class="social-link">
+                    <a href="https://wa.link/vadqg1" target="_blank" class="social-link" aria-label="WhatsApp">
                         <i class='bx bxl-whatsapp'></i>
                     </a>
                 </div>
@@ -91,7 +101,7 @@
 
             <div class="hero-visual">
                 <div class="hero-image">
-                    <img src="Images/home-img1-bor2a.png" alt="KKaushik Raj">
+                    <img src="Images/home-img1-bor2a.png" alt="Kaushik Raj">
                     <div class="floating-elements">
                         <div class="floating-card">
                             <i class='bx bx-code-alt' style="font-size: 1.5rem; color: var(--primary);"></i>
@@ -153,7 +163,7 @@
                 </div>
 
                 <div class="about-image">
-                    <img src="Images/about-img.png" alt="About Kaushik" style="width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+                    <img src="Images/about-img.png" alt="About Kaushik" loading="lazy" style="width: 100%; height: 400px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
                 </div>
             </div>
         </div>
@@ -254,7 +264,9 @@
 
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image"></div>
+                    <div class="project-image">
+                        <!-- <img src="Images/isekai_tracker.png" alt="Isekai Tracker" loading="lazy"> -->
+                    </div>
                     <div class="project-content">
                         <h3 class="project-title">Isekai Tracker</h3>
                         <p class="project-description">
@@ -268,7 +280,9 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image"><img src="Images/project2.png" alt="Personalised Music Player"></div>
+                    <div class="project-image">
+                        <img src="Images/project2.png" alt="Personalised Music Player" loading="lazy">
+                    </div>
                     <div class="project-content">
                         <h3 class="project-title">Personalised Music Player</h3>
                         <p class="project-description">
@@ -282,7 +296,9 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image"><img src="Images/project3.png" alt="Book Library System"></div>
+                    <div class="project-image">
+                        <img src="Images/project3.png" alt="Book Library System" loading="lazy">
+                    </div>
                     <div class="project-content">
                         <h3 class="project-title">Book Library System</h3>
                         <p class="project-description">
@@ -296,7 +312,9 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image"><img src="Images/project1.png" alt="To-Do List Web App"></div>
+                    <div class="project-image">
+                        <img src="Images/project1.png" alt="To-Do List Web App" loading="lazy">
+                    </div>
                     <div class="project-content">
                         <h3 class="project-title">To-Do List Web App</h3>
                         <p class="project-description">
@@ -373,9 +391,9 @@
                         <div class="swiper-slide">
                             <div class="testimonial-slide">
                                 <div class="testimonial-avatar">
-                                    <!-- <img src="Images/Testimonial/Akash Sahu.jpg" alt=""> -->
+                                    <img src="Images/Testimonial/Akash Sahu.jpg" alt="Akash Sahu" loading="lazy">
                                 </div>
-                                <h4 class="testimonial-name">Rishav Raj</h4>
+                                <h4 class="testimonial-name">Akash Sahu</h4>
                                 <p class="testimonial-text">"Aesthetically pleasing!! 👌🏻 Your eye for design is
                                     exceptional."</p>
                             </div>
@@ -474,7 +492,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Kaushik Raj. All rights reserved.</p>
+            <p>&copy; <span id="current-year">2026</span> Kaushik Raj. All rights reserved.</p>
         </div>
     </footer>
 
