@@ -3,6 +3,5 @@ node_modules
 .firebase/
 .firebaserc
 .git
-.github
 firebase.json
 .gitignore
