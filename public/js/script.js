@@ -35,9 +35,13 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".nav-link");
 
-function updateActiveNav() {
-    const scrollY = window.pageYOffset;
+// Flag to temporarily suspend scroll-based highlighting after a nav click
+let scrollHighlightSuppressed = false;
+let scrollSuppressTimer = null;
 
+function updateActiveNav() {
+    if (scrollHighlightSuppressed) return;
+    const scrollY = window.pageYOffset;
     sections.forEach((section) => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 100;
@@ -53,6 +57,22 @@ function updateActiveNav() {
         }
     });
 }
+
+// When a nav link is clicked, immediately set it as active and suppress scroll detection
+navLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+        // Immediately set this as the only active link
+        navLinks.forEach((l) => l.classList.remove("active"));
+        this.classList.add("active");
+
+        // Suppress scroll-based updates for 1.2s to let smooth scroll settle
+        scrollHighlightSuppressed = true;
+        if (scrollSuppressTimer) clearTimeout(scrollSuppressTimer);
+        scrollSuppressTimer = setTimeout(() => {
+            scrollHighlightSuppressed = false;
+        }, 1200);
+    });
+});
 
 window.addEventListener("scroll", updateActiveNav);
 

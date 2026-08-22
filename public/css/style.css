@@ -208,9 +208,14 @@ body {
     display: none;
 }
 
-.nav-link:hover,
 .nav-link.active {
     color: var(--primary);
+}
+
+@media (hover: hover) {
+    .nav-link:hover {
+        color: var(--accent);
+    }
 }
 
 .nav-link::after {
@@ -220,8 +225,12 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--primary);
+    background: linear-gradient(90deg, var(--primary), var(--accent));
     transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    background: var(--accent);
 }
 
 .nav-link:hover::after,
@@ -1605,18 +1614,26 @@ body:not(.dark-theme) .footer {
         width: calc(100% - 32px);
         max-width: 440px;
         height: 64px;
-        background: var(--glass-bg);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid var(--glass-border);
+        /* Glassmorphism — translucent enough to see-through, opaque enough to stay readable */
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(28px) saturate(160%);
+        -webkit-backdrop-filter: blur(28px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.55);
         border-radius: 32px;
-        box-shadow: var(--glass-shadow);
+        /* Deeper shadow for visual lift and separation from page content */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.1);
         padding: 0 16px;
         align-items: center;
         justify-content: space-around;
         gap: 0;
         z-index: 1005;
         transition: transform 0.3s ease;
+    }
+
+    .dark-theme .nav-menu {
+        background: rgba(20, 23, 30, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
     .nav-link {
@@ -1626,9 +1643,14 @@ body:not(.dark-theme) .footer {
         gap: 4px;
         font-size: 0.65rem;
         font-weight: 600;
-        color: var(--text-secondary);
+        /* Explicit solid color — not relying on glass bleed-through for contrast */
+        color: #64748b;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
+    }
+
+    .dark-theme .nav-link {
+        color: #94a3b8;
     }
 
     .nav-link i {
@@ -1644,10 +1666,16 @@ body:not(.dark-theme) .footer {
         display: none !important;
     }
 
-    .nav-link:hover,
     .nav-link.active {
         color: var(--primary);
         transform: translateY(-2px);
+    }
+
+    @media (hover: hover) {
+        .nav-link:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
     }
 
     .mobile-menu-toggle {
