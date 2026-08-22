@@ -159,19 +159,22 @@ document
         });
     });
 
-// Mobile menu functionality (basic implementation)
+// Mobile menu functionality (sidebar panel implementation)
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
 const navMenu = document.querySelector(".nav-menu");
 
 mobileMenuToggle.addEventListener("click", () => {
-    navMenu.style.display = navMenu.style.display === "flex" ? "none" : "flex";
+    navMenu.classList.toggle("active");
+    const isOpen = navMenu.classList.contains("active");
+    mobileMenuToggle.querySelector("i").className = isOpen ? "bx bx-x" : "bx bx-menu";
 });
 
 // Close mobile menu when clicking on a link
 navLinks.forEach((link) => {
     link.addEventListener("click", () => {
         if (window.innerWidth <= 768) {
-            navMenu.style.display = "none";
+            navMenu.classList.remove("active");
+            mobileMenuToggle.querySelector("i").className = "bx bx-menu";
         }
     });
 });
@@ -180,17 +183,19 @@ navLinks.forEach((link) => {
 document.addEventListener("click", (e) => {
     if (
         window.innerWidth <= 768 &&
-        navMenu.style.display === "flex" &&
+        navMenu.classList.contains("active") &&
         !navMenu.contains(e.target) &&
         !mobileMenuToggle.contains(e.target)
     ) {
-        navMenu.style.display = "none";
+        navMenu.classList.remove("active");
+        mobileMenuToggle.querySelector("i").className = "bx bx-menu";
     }
 });
 
 window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
-        navMenu.style.display = "";
+        navMenu.classList.remove("active");
+        mobileMenuToggle.querySelector("i").className = "bx bx-menu";
     }
 });
 
