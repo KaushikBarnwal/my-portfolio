@@ -220,6 +220,24 @@ document.addEventListener("DOMContentLoaded", function() {
     imagesLoaded( grid ).on( 'progress', function() {
         msnry.layout();
     });
+    // Certificates Show More logic on Mobile
+    var certItemsList = grid.querySelectorAll('.grid-item');
+    var showMoreBtn = document.getElementById('cert-show-more-btn');
+    var certSection = document.getElementById('certificates');
+    // Add hidden-cert class to items beyond the first 6
+    // (This class is only active in mobile view via media query, so desktop remains unaffected)
+    for (var i = 6; i < certItemsList.length; i++) {
+        certItemsList[i].classList.add('hidden-cert');
+    }
+    if (showMoreBtn && certSection) {
+        showMoreBtn.addEventListener('click', function() {
+            certSection.classList.add('all-shown');
+            // Recalculate Masonry layout after revealing items
+            if (msnry) {
+                msnry.layout();
+            }
+        });
+    }
 
     // Shared Lightbox functionality
     var lightbox = document.getElementById('cert-lightbox');

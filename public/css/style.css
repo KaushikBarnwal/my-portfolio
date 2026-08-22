@@ -1009,6 +1009,17 @@ body {
     }
 }
 
+.show-more-container {
+    display: none; /* Hidden on desktop by default */
+    justify-content: center;
+    margin-top: var(--space-xl);
+    width: 100%;
+}
+
+#certificates.all-shown .show-more-container {
+    display: none !important;
+}
+
 /* Section Divider */
 .section-divider {
     display: flex;
@@ -1570,6 +1581,20 @@ body:not(.dark-theme) .footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .show-more-container {
+        display: flex; /* Shown on mobile */
+    }
+
+    #certificates:not(.all-shown) .grid-item.hidden-cert {
+        display: none !important;
+    }
+
+    .header {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: var(--bg-primary) !important;
+    }
+
     .nav-menu {
         display: flex;
         flex-direction: row;
@@ -1651,6 +1676,15 @@ body:not(.dark-theme) .footer {
         text-align: center;
     }
 
+    #contact {
+        padding-bottom: var(--space-md);
+    }
+
+    .footer {
+        padding-top: var(--space-md);
+        padding-bottom: 96px;
+    }
+
     .hero {
         padding: 100px var(--space-md) var(--space-lg);
     }
@@ -1682,11 +1716,6 @@ body:not(.dark-theme) .footer {
 @media (max-width: 480px) {
     .nav-container {
         padding: 0 var(--space-md);
-    }
-
-    .nav-actions .btn {
-        display: none;
-        /* Hide resume button on very small screens to prevent header overflow */
     }
 
     .hero-cta {
